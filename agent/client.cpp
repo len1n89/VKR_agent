@@ -84,9 +84,11 @@ void Client::connected()
 
 void Client::connectionTimeout()
 {
-    qDebug() <<"connectionTimeout "<<m_tcpSocket->state();
+    qDebug()<<"connectionTimeout "<<m_tcpSocket->state();
+
     if(m_tcpSocket->state() == QAbstractSocket::ConnectingState)
     {
+        qDebug() <<"connectionTimeout ConnectingState";
         m_tcpSocket->abort();
         emit m_tcpSocket->error(QAbstractSocket::SocketTimeoutError);
     }
