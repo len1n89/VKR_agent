@@ -19,6 +19,7 @@ public:
 
 public slots:
     void closeConnection();
+    qint64 sendToServer(QTcpSocket *socket, const QString &str);
 
 signals:
     void statusChanged(bool status);

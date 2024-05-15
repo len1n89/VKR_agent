@@ -47,6 +47,18 @@ void Client::closeConnection()
         m_tcpSocket->abort();
 }
 
+qint64 Client::sendToServer(QTcpSocket *socket, const QString &str)
+{
+    QByteArray arrBlock;
+    QDataStream out(&arrBlock, QIODevice::WriteOnly);
+
+    out << quint16(0) << str;
+    out.device()->seek(0);
+    out << quint16(arrBlock.size() - sizeof(quint16));
+
+    return socket->write(arrBlock);
+}
+
 void Client::readyRead()
 {
     QDataStream in(m_tcpSocket);
@@ -55,11 +67,13 @@ void Client::readyRead()
     {
         if (!m_nNextBlockSize)
         {
-            if (m_tcpSocket->bytesAvailable() < sizeof(quint16)) { break; }
+            if (m_tcpSocket->bytesAvailable() < sizeof(quint16))
+                break;
             in >> m_nNextBlockSize;
         }
 
-        if (m_tcpSocket->bytesAvailable() < m_nNextBlockSize) { break; }
+        if (m_tcpSocket->bytesAvailable() < m_nNextBlockSize)
+            break;
 
         QString str;
         in >> str;
@@ -79,6 +93,7 @@ void Client::readyRead()
 void Client::connected()
 {
     m_status = true;
+    sendToServer(m_tcpSocket, "STRING from client");
     emit statusChanged(m_status);
 }
 

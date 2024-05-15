@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Client_t {
-    QByteArrayData data[8];
-    char stringdata0[83];
+    QByteArrayData data[12];
+    char stringdata0[119];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,13 +36,18 @@ QT_MOC_LITERAL(1, 7, 13), // "statusChanged"
 QT_MOC_LITERAL(2, 21, 0), // ""
 QT_MOC_LITERAL(3, 22, 6), // "status"
 QT_MOC_LITERAL(4, 29, 15), // "closeConnection"
-QT_MOC_LITERAL(5, 45, 9), // "readyRead"
-QT_MOC_LITERAL(6, 55, 9), // "connected"
-QT_MOC_LITERAL(7, 65, 17) // "connectionTimeout"
+QT_MOC_LITERAL(5, 45, 12), // "sendToServer"
+QT_MOC_LITERAL(6, 58, 11), // "QTcpSocket*"
+QT_MOC_LITERAL(7, 70, 6), // "socket"
+QT_MOC_LITERAL(8, 77, 3), // "str"
+QT_MOC_LITERAL(9, 81, 9), // "readyRead"
+QT_MOC_LITERAL(10, 91, 9), // "connected"
+QT_MOC_LITERAL(11, 101, 17) // "connectionTimeout"
 
     },
     "Client\0statusChanged\0\0status\0"
-    "closeConnection\0readyRead\0connected\0"
+    "closeConnection\0sendToServer\0QTcpSocket*\0"
+    "socket\0str\0readyRead\0connected\0"
     "connectionTimeout"
 };
 #undef QT_MOC_LITERAL
@@ -53,7 +58,7 @@ static const uint qt_meta_data_Client[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,19 +66,21 @@ static const uint qt_meta_data_Client[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   39,    2, 0x06 /* Public */,
+       1,    1,   44,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   42,    2, 0x0a /* Public */,
-       5,    0,   43,    2, 0x08 /* Private */,
-       6,    0,   44,    2, 0x08 /* Private */,
-       7,    0,   45,    2, 0x08 /* Private */,
+       4,    0,   47,    2, 0x0a /* Public */,
+       5,    2,   48,    2, 0x0a /* Public */,
+       9,    0,   53,    2, 0x08 /* Private */,
+      10,    0,   54,    2, 0x08 /* Private */,
+      11,    0,   55,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Bool,    3,
 
  // slots: parameters
     QMetaType::Void,
+    QMetaType::LongLong, 0x80000000 | 6, QMetaType::QString,    7,    8,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -89,9 +96,11 @@ void Client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         switch (_id) {
         case 0: _t->statusChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 1: _t->closeConnection(); break;
-        case 2: _t->readyRead(); break;
-        case 3: _t->connected(); break;
-        case 4: _t->connectionTimeout(); break;
+        case 2: { qint64 _r = _t->sendToServer((*reinterpret_cast< QTcpSocket*(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])));
+            if (_a[0]) *reinterpret_cast< qint64*>(_a[0]) = std::move(_r); }  break;
+        case 3: _t->readyRead(); break;
+        case 4: _t->connected(); break;
+        case 5: _t->connectionTimeout(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -135,13 +144,13 @@ int Client::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }
